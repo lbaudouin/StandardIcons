@@ -1,12 +1,23 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
-import QtQuick.Controls 2.5
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
 
-Window {
+ApplicationWindow {
     visible: true
     width: 640
     height: 480
     title: qsTr("Icon names")
+
+    header: ToolBar{
+        RowLayout{
+            ToolButton{
+                id: disabledButton
+                text: checked ? "Enabled" : "Disabled"
+                checkable: true
+            }
+        }
+    }
 
     /*ListView{
         anchors.fill: parent
@@ -28,7 +39,7 @@ Window {
         }
         delegate: ItemDelegate{
             icon.name: name
-            icon.color: "transparent"
+            icon.color: disabledButton.checked ? "#99cccccc" : "transparent"
             //text: name
 
             display: AbstractButton.IconOnly
